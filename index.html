@@ -2,13 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Guess The Number</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="app">
-      <p class="text-red-500">Test</p>
+      <header>
+        <h1>Welcome to the "Guess The Number" game ! 🎮</h1>
+        <!-- <img class=logoPizza src="../images/pizza.png" alt="Vignette logo pizza"> -->
+        <!-- <p class="text-red-500">Test</p> -->
+        <p>
+          <br />
+          Rules:<br />
+          1. The system will generate a random number between 0 and 500.<br />
+          2. Your task is to guess this number.<br />
+          3. Enter a number when prompted.<br />
+          4. If your guess is too high or too low, you'll be notified, and you
+          can guess again.<br />
+          5. The game continues until you guess the correct number.<br /><br />
+          Let's get started! 🚀 <br />
+        </p>
+      </header>
+
+      <label for="entered-number">Enter a number between 0 and 500:</label
+      ><br />
+      <input
+        class="input"
+        type="number"
+        id="entered-number"
+        name="entered-number"
+      /><br />
     </div>
 
     <script type="module" src="/main.js"></script>
