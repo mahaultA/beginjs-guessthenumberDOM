@@ -1,4 +1,17 @@
 import "./style.css";
+
+const buttonStart = document.getElementById("button-start");
+const buttonReplay = document.getElementById("button-replay");
+const buttonGuess = document.getElementById("button-guess");
+const msgError = document.getElementById("error-msg");
+const attempts = document.getElementById("attempts");
+const numberIndicator = document.getElementById("number-indicator");
+const enteredNumber = document.getElementById("entered-number");
+const overviewBar = document.getElementById("overview-bar");
+
+let targetNumber = null;
+let attemptCount = null;
+
 // Generate a random number within a range
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -9,58 +22,37 @@ const isValidNumber = (number) => {
   return !Number.isNaN(number) && number >= 0 && number <= 500;
 };
 
-const targetNumber = getRandomNumber(0, 500);
-let attemptCount = 0;
+const removeAllChildren = (element) => {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+};
 
-console.log({ targetNumber });
+const initGame = () => {
+  targetNumber = getRandomNumber(0, 500);
+  console.log({ targetNumber });
+  attemptCount = 0;
+};
 
-// const game = () => {
-//   const playGuessingGame = () => {
-//     const userGuess = Number(prompt("Enter a number: "));
-//     attemptCount += 1;
-//     if (!isValidNumber(userGuess)) {
-//       console.log(
-//         "🛑 The entered number is invalid. It must be between 0 and 500.\n\n"
-//       );
-//       return playGuessingGame();
-//     }
-//     if (userGuess > targetNumber) {
-//       console.log("📈 The entered number is **too big**.\n\n");
-//       return playGuessingGame();
-//     }
-//     if (userGuess < targetNumber) {
-//       console.log("📉 The entered number is **too small**.\n\n");
-//       return playGuessingGame();
-//     }
-//     // If this point is reached, the user has correctly guessed the number
-//     console.log(`🟢 Well done! The random number was indeed ${userGuess}.`);
-//     console.log(`✨ You succeeded in ${attemptCount} attempts.`);
-//   };
-//   const restartGame = () => {
-//     const choice = prompt("Do you want to play again? (Y/N): ");
-//     if (choice.toUpperCase() === "Y") {
-//       console.log("\n\n");
-//       game();
-//     } else if (choice.toUpperCase() === "N") {
-//       console.log("Thank you for playing! Goodbye.");
-//     } else {
-//       console.log("Invalid choice. Please enter Y or N.");
-//       restartGame();
-//     }
-//   };
-//   console.log(targetNumber);
-//   playGuessingGame();
-//   restartGame();
-// };
+const clearGameUI = () => {
+  buttonGuess.disabled = false;
+  numberIndicator.textContent = "";
+  // userGuess.textContent = "";
+  removeAllChildren(overviewBar);
+  attempts.textContent = `ATTEMPTS: 0`;
+  enteredNumber.value = "";
+  buttonReplay.style.display = "none";
+};
 
-const button = document.getElementById("button");
-const msgError = document.getElementById("error-msg");
-const attempts = document.getElementById("attempts");
-const numberIndicator = document.getElementById("number-indicator");
-const enteredNumber = document.getElementById("entered-number");
-const overviewBar = document.getElementById("overview-bar");
+buttonStart.addEventListener("click", () => {
+  const appGame = document.getElementById("app-game");
+  const appWelcome = document.getElementById("app-welcome");
+  appWelcome.style.display = "none";
+  appGame.style.display = "block";
+  buttonReplay.style.display = "none";
+});
 
-button.addEventListener("click", (event) => {
+buttonGuess.addEventListener("click", () => {
   console.log("click submit");
   msgError.textContent = "";
   numberIndicator.textContent = "";
@@ -69,10 +61,10 @@ button.addEventListener("click", (event) => {
 
   if (!isValidNumber(userGuess)) {
     console.log(
-      "🛑 Your entry is invalid. It must be a number between 0 and 500.\n\n"
+      "🛑 You really want to lose ? Your number must be between 0 and 500\n\n"
     );
     msgError.textContent =
-      "🛑 Your entry is invalid. It must be a number between 0 and 500.\n\n";
+      "🛑 You really want to lose ? Your number must be between 0 and 500\n\n";
     return;
   }
 
@@ -85,8 +77,6 @@ button.addEventListener("click", (event) => {
   cross.classList.add("cross");
   cross.textContent = "❌";
 
-  // const moitieLargeurDiv = overviewBar.offsetWidth / 2;
-  // userGuess est le nombre entré par l'utilisateur compris entre 0 et 500
   const positionCalculated = (userGuess * 100) / 500;
   console.log({ positionCalculated });
   cross.style.position = "absolute";
@@ -99,19 +89,31 @@ button.addEventListener("click", (event) => {
   overviewBar.appendChild(cross);
 
   if (userGuess > targetNumber) {
-    numberIndicator.textContent = "📉 The entered number is **too big**.\n\n";
+    numberIndicator.textContent = "📉 Your number is **too big**";
     return;
   }
   if (userGuess < targetNumber) {
-    numberIndicator.textContent = "📉 The entered number is **too small**.\n\n";
+    numberIndicator.textContent = "📉 Your number is **too small**";
     return;
   }
 
   cross.textContent = "🟢";
 
-  numberIndicator.textContent = "Bravo ! ";
+  buttonGuess.disabled = true;
+  buttonReplay.style.display = "block";
+
+  numberIndicator.textContent = "Congrats ! ";
   numberIndicator.textContent += userGuess;
-  numberIndicator.textContent += " is the right number";
+  numberIndicator.textContent += " is the right number 🎉\n";
+  // numberIndicator.textContent += `You succeded in ${attemptCount} tries`;
+  const lastPhrase = document.createElement("p");
+  lastPhrase.textContent = `You succeeded in ${attemptCount} tries !`;
+  numberIndicator.appendChild(lastPhrase);
 });
 
-// game();
+buttonReplay.addEventListener("click", () => {
+  clearGameUI();
+  initGame();
+});
+
+initGame();

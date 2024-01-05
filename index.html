@@ -13,40 +13,57 @@
     />
   </head>
   <body>
-    <div id="app">
-      <header>
-        <h1>Welcome to the "Guess The Number" game ! 🎮</h1>
-        <!-- <img class=logoPizza src="../images/pizza.png" alt="Vignette logo pizza"> -->
-        <!-- <p class="text-red-500">Test</p> -->
-        <p>
-          <br />
-          Rules:<br />
-          1. The system will generate a random number between 0 and 500.<br />
-          2. Your task is to guess this number.<br />
-          3. Enter a number when prompted.<br />
-          4. If your guess is too high or too low, you'll be notified, and you
-          can guess again.<br />
-          5. The game continues until you guess the correct number.<br /><br />
-          Let's get started! 🚀 <br />
-        </p>
-      </header>
-
-      <div id="attempts">ATTEMPTS:</div>
-      <label for="entered-number">Enter a number between 0 and 500:</label
-      ><br />
-      <input
-        class="input"
-        type="number"
-        id="entered-number"
-        name="entered-number"
-      /><br />
-      <div id="error-msg"></div>
-      <button id="button">CLICK</button>
+    <header>
+      <h1>Welcome to the "Guess The Number" game ! 🎮</h1>
+      <!-- <img class=logoPizza src="../images/pizza.png" alt="Vignette logo pizza"> -->
+      <!-- <p class="text-red-500">Test</p> -->
+    </header>
+    <div id="app-welcome">
+      <p>
+        <br />
+        Rules:<br />
+        1. The system will generate a random number between 0 and 500.<br />
+        2. Your task is to guess this number.<br />
+        3. Enter a number.<br />
+        4. If your guess is too high or too low, you'll be notified, and you can
+        guess again.<br />
+        5. The game continues until you guess the correct number.<br /><br />
+        Let's get started! 🚀 <br /><br /><br />
+      </p>
+      <button id="button-start">Start</button>
+    </div>
+    <div id="app-game">
+      <p>
+        The system generated a secret number between 0 and 500<br />
+        Try to find it...
+      </p>
+      <div id="attempts">ATTEMPTS: 0</div>
+      <label for="entered-number">Enter your guess :</label><br />
+      <div id="number-bar">
+        <input
+          class="input"
+          type="number"
+          id="entered-number"
+          name="entered-number"
+        /><br />
+        <button id="button-guess">Submit</button>
+      </div>
 
       <div id="number-indicator"></div>
       <div id="overview-bar-container">
         <div id="overview-bar"></div>
       </div>
+
+      <div id="under-number-indicator">
+        <span>0</span>
+        <span>500</span>
+      </div>
+
+      <div id="error-msg"></div>
+      <div id="replay-div">
+        <button id="button-replay">Replay</button>
+      </div>
+
       <!-- <canvas height="30px" style="border: 1px solid black" /> -->
     </div>
 
