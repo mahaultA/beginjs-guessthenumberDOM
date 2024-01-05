@@ -40,3 +40,15 @@ input {
 #number-indicator {
   @apply py-8;
 }
+
+#overview-bar-container {
+  @apply bg-gray-300 w-full h-8 rounded-md border border-neutral-400;
+}
+
+#overview-bar {
+  @apply ml-2 mr-2;
+}
+
+/* canvas {
+  @apply bg-gray-300 w-full;
+} */
