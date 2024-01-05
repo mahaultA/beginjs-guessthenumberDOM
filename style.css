@@ -31,3 +31,12 @@ button {
 input {
   @apply flex h-10 w-full rounded-md border border-neutral-400 bg-neutral-50 px-3 py-2 text-sm ring-offset-neutral-50 placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }
+
+#attempts {
+  @apply py-8;
+  text-align: right;
+}
+
+#number-indicator {
+  @apply py-8;
+}
