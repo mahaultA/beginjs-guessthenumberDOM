@@ -46,7 +46,7 @@ input {
 }
 
 #overview-bar {
-  @apply ml-2 mr-2;
+  @apply ml-1 mr-4;
 }
 
 /* canvas {
