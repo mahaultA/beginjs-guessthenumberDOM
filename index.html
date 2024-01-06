@@ -38,28 +38,32 @@
         Try to find it...
       </p>
       <div id="attempts">ATTEMPTS: 0</div>
-      <label for="entered-number">Enter your guess :</label><br />
-      <div id="number-bar">
-        <input
-          class="input"
-          type="number"
-          id="entered-number"
-          name="entered-number"
-        /><br />
-        <button id="button-guess">Submit</button>
-      </div>
+      <form id="myForm">
+        <label for="entered-number" class="numberBar">Enter your guess :</label
+        ><br />
+        <div id="number-bar" class="numberBar">
+          <input
+            class="input"
+            type="number"
+            id="entered-number"
+            name="entered-number"
+          />
+          <button id="button-guess">Submit</button>
+        </div>
 
-      <div id="number-indicator"></div>
-      <div id="overview-bar-container">
-        <div id="overview-bar"></div>
-      </div>
+        <div id="number-indicator"></div>
+        <div id="overview-bar-container">
+          <div id="overview-bar"></div>
+        </div>
 
-      <div id="under-number-indicator">
-        <span>0</span>
-        <span>500</span>
-      </div>
+        <div id="under-number-indicator">
+          <span>0</span>
+          <span>500</span>
+        </div>
 
-      <div id="error-msg"></div>
+        <div id="error-msg"></div>
+      </form>
+      <!-- <button id="button-test">test</button> -->
       <div id="replay-div">
         <button id="button-replay">Replay</button>
       </div>

@@ -8,6 +8,8 @@ const attempts = document.getElementById("attempts");
 const numberIndicator = document.getElementById("number-indicator");
 const enteredNumber = document.getElementById("entered-number");
 const overviewBar = document.getElementById("overview-bar");
+const form = document.getElementById("myForm");
+const numberBar = document.getElementById("number-bar");
 
 let targetNumber = null;
 let attemptCount = null;
@@ -36,6 +38,7 @@ const initGame = () => {
 
 const clearGameUI = () => {
   buttonGuess.disabled = false;
+  // buttonGuess.style.display = "block";
   numberIndicator.textContent = "";
   // userGuess.textContent = "";
   removeAllChildren(overviewBar);
@@ -52,7 +55,8 @@ buttonStart.addEventListener("click", () => {
   buttonReplay.style.display = "none";
 });
 
-buttonGuess.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   console.log("click submit");
   msgError.textContent = "";
   numberIndicator.textContent = "";
@@ -89,17 +93,18 @@ buttonGuess.addEventListener("click", () => {
   overviewBar.appendChild(cross);
 
   if (userGuess > targetNumber) {
-    numberIndicator.textContent = "📉 Your number is **too big**";
+    numberIndicator.textContent = `📉 ${userGuess} is **too big**`;
     return;
   }
   if (userGuess < targetNumber) {
-    numberIndicator.textContent = "📉 Your number is **too small**";
+    numberIndicator.textContent = `📉 ${userGuess} is **too small**`;
     return;
   }
 
   cross.textContent = "🟢";
 
   buttonGuess.disabled = true;
+
   buttonReplay.style.display = "block";
 
   numberIndicator.textContent = "Congrats ! ";
@@ -117,3 +122,4 @@ buttonReplay.addEventListener("click", () => {
 });
 
 initGame();
+clearGameUI();
