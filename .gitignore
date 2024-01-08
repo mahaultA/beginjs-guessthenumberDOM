@@ -23,9 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-.eslintrc.json
-counter.js
-package-lock.json
+# .eslintrc.json
+# counter.js
+# package-lock.json
 # package.json
-postcss.config.js
+# postcss.config.js
 # tailwind.config.js
