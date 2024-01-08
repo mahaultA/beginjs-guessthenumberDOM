@@ -17,5 +17,9 @@
   },
   "dependencies": {
     "tailwindcss": "^3.4.0"
-  } 
+  },
+  "description": "",
+  "main": "main.js",
+  "author": "",
+  "license": "ISC"
 }
