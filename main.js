@@ -9,7 +9,7 @@ const numberIndicator = document.getElementById("number-indicator");
 const enteredNumber = document.getElementById("entered-number");
 const overviewBar = document.getElementById("overview-bar");
 const form = document.getElementById("myForm");
-const numberBar = document.getElementById("number-bar");
+// const numberBar = document.getElementById("number-bar");
 
 let targetNumber = null;
 let attemptCount = null;
@@ -30,12 +30,14 @@ const removeAllChildren = (element) => {
   }
 };
 
+// Init game by generating a random number between 0 and 500 and reset
+// the attempts count
 const initGame = () => {
   targetNumber = getRandomNumber(0, 500);
-  console.log({ targetNumber });
   attemptCount = 0;
 };
 
+// Clear game UI by disabling the submit button and erasing all data generated during the game
 const clearGameUI = () => {
   buttonGuess.disabled = false;
   // buttonGuess.style.display = "block";
@@ -47,6 +49,7 @@ const clearGameUI = () => {
   buttonReplay.style.display = "none";
 };
 
+// When user pushes start, it hides the introduction and launches the game
 buttonStart.addEventListener("click", () => {
   const appGame = document.getElementById("app-game");
   const appWelcome = document.getElementById("app-welcome");
@@ -55,43 +58,36 @@ buttonStart.addEventListener("click", () => {
   buttonReplay.style.display = "none";
 });
 
+//This function is executed when user submits an entry
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("click submit");
   msgError.textContent = "";
   numberIndicator.textContent = "";
   const userGuess = enteredNumber.value;
-  console.log({ userGuess });
 
   if (!isValidNumber(userGuess)) {
-    console.log(
-      "🛑 You really want to lose ? Your number must be between 0 and 500\n\n"
-    );
     msgError.textContent =
       "🛑 You really want to lose ? Your number must be between 0 and 500\n\n";
     return;
   }
 
-  console.log({ attemptCount });
+  // Update the attempts count
   attemptCount += 1;
   attempts.textContent = `ATTEMPTS: ${attemptCount}`;
 
+  // Update the overview bar
   overviewBar.style.position = "relative";
   const cross = document.createElement("span");
   cross.classList.add("cross");
   cross.textContent = "❌";
-
   const positionCalculated = (userGuess * 100) / 500;
-  console.log({ positionCalculated });
   cross.style.position = "absolute";
-
-  const largeurTotale = overviewBar.offsetWidth;
-  const positionEnPixels = (positionCalculated * largeurTotale) / 100 - 5;
-
+  const totalWidth = overviewBar.offsetWidth;
+  const positionEnPixels = (positionCalculated * totalWidth) / 100 - 5;
   cross.style.left = `${positionEnPixels}px`;
-
   overviewBar.appendChild(cross);
 
+  // Compare the user answer with the answer to find
   if (userGuess > targetNumber) {
     numberIndicator.textContent = `📉 ${userGuess} is **too big**`;
     return;
@@ -101,16 +97,19 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
+  // At this point, user has found the right number !..
   cross.textContent = "🟢";
 
+  // ..So we disable the submit button to stop the game
   buttonGuess.disabled = true;
 
+  // We display the Replay button
   buttonReplay.style.display = "block";
 
+  // We display the message to congrat the user
   numberIndicator.textContent = "Congrats ! ";
   numberIndicator.textContent += userGuess;
   numberIndicator.textContent += " is the right number 🎉\n";
-  // numberIndicator.textContent += `You succeded in ${attemptCount} tries`;
   const lastPhrase = document.createElement("p");
   lastPhrase.textContent = `You succeeded in ${attemptCount} tries !`;
   numberIndicator.appendChild(lastPhrase);

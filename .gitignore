@@ -26,6 +26,6 @@ dist-ssr
 .eslintrc.json
 counter.js
 package-lock.json
-package.json
+# package.json
 postcss.config.js
 tailwind.config.js
