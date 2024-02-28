@@ -1,5 +1,9 @@
 # beginjs-guessthenumberDOM
 
+Guess The Number est un jeu où il faut deviner le nombre généré par le système avec le moins d'essais possibles.
+Ce nombre est compris entre 0 et 500.
+Voici les étapes à suivre pour setup le projet :
+
 ## Télécharger les dépendances
 
 - [git](https://git-scm.com/downloads) - v2 ou plus
